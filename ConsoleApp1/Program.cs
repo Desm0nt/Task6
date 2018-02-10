@@ -26,20 +26,27 @@ namespace ConsoleApp1
                 worker.PrintInfo();
             }
             Workers.Sort();
-            Console.WriteLine("\n SORTED BY SALARY: \n");
+            Console.WriteLine("\n SORTED BY SALARY (default): \n");
             foreach (var worker in Workers)
             {
                 worker.PrintInfo();
             }
-            List<Employee> firstNameWorkSort = Workers.OrderBy(o => o.FirstName).ToList();
             Console.WriteLine("\n SORTED BY FIRST NAME: \n");
-            foreach (var worker in firstNameWorkSort)
+            Workers.Sort(delegate (Employee x, Employee y)
+            {
+                return x.FirstName.CompareTo(y.FirstName);
+            });
+            foreach (var worker in Workers)
             {
                 worker.PrintInfo();
             }
-            List<Employee> cabinetNameWorkSort = Workers.OrderBy(o => o.Cabinet).ToList();
+
             Console.WriteLine("\n SORTED BY CABINET NUMBER: \n");
-            foreach (var worker in cabinetNameWorkSort)
+            Workers.Sort(delegate (Employee x, Employee y)
+            {
+                return x.Cabinet.CompareTo(y.Cabinet);
+            });
+            foreach (var worker in Workers)
             {
                 worker.PrintInfo();
             }
